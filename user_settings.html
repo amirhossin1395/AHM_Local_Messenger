@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تنظیمات - AHM Local Messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="settings-page">
+        <header class="settings-header">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <h1>⚙️ تنظیمات</h1>
+        </header>
+
+        <div class="settings-content">
+            <!-- حساب کاربری -->
+            <div class="settings-section">
+                <h3>👤 حساب کاربری</h3>
+                <div class="setting-row" onclick="window.location.href='/profile'">
+                    <span>📝 ویرایش پروفایل</span>
+                    <span>←</span>
+                </div>
+                <div class="setting-row" onclick="changePassword()">
+                    <span>🔒 تغییر رمز عبور</span>
+                    <span>←</span>
+                </div>
+            </div>
+
+            <!-- ظاهر -->
+            <div class="settings-section">
+                <h3>🎨 ظاهر</h3>
+                <div class="setting-row">
+                    <span>🌙 حالت شب</span>
+                    <label class="switch">
+                        <input type="checkbox" id="dark-mode" onchange="toggleDarkMode()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-row">
+                    <span>🎨 رنگ تم</span>
+                    <select id="theme-color" onchange="changeThemeColor()">
+                        <option value="#2AABEE">آبی تلگرامی</option>
+                        <option value="#4CAF50">سبز</option>
+                        <option value="#9C27B0">بنفش</option>
+                        <option value="#FF5722">نارنجی</option>
+                        <option value="#E91E63">صورتی</option>
+                        <option value="#607D8B">خاکستری</option>
+                    </select>
+                </div>
+                <div class="setting-row">
+                    <span>📏 اندازه فونت</span>
+                    <select id="font-size" onchange="changeFontSize()">
+                        <option value="14">کوچک</option>
+                        <option value="16" selected>متوسط</option>
+                        <option value="18">بزرگ</option>
+                        <option value="20">خیلی بزرگ</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- اعلان‌ها -->
+            <div class="settings-section">
+                <h3>🔔 اعلان‌ها</h3>
+                <div class="setting-row">
+                    <span>🔊 اعلان صوتی</span>
+                    <label class="switch">
+                        <input type="checkbox" id="sound-notif" checked onchange="toggleSound()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-row">
+                    <span>📳 لرزش</span>
+                    <label class="switch">
+                        <input type="checkbox" id="vibration" checked onchange="toggleVibration()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- حریم خصوصی -->
+            <div class="settings-section">
+                <h3>🔐 حریم خصوصی</h3>
+                <div class="setting-row">
+                    <span>🟢 نمایش وضعیت آنلاین</span>
+                    <label class="switch">
+                        <input type="checkbox" id="show-online" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-row">
+                    <span>✅ تیک خوانده شدن</span>
+                    <label class="switch">
+                        <input type="checkbox" id="read-receipt" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- داده‌ها -->
+            <div class="settings-section">
+                <h3>💾 داده‌ها</h3>
+                <div class="setting-row" onclick="exportData()">
+                    <span>📤 خروجی گرفتن از داده‌ها</span>
+                    <span>←</span>
+                </div>
+                <div class="setting-row" onclick="clearCache()">
+                    <span>🗑️ پاک کردن کش</span>
+                    <span>←</span>
+                </div>
+                <div class="setting-row danger" onclick="deleteAccount()">
+                    <span>❌ حذف حساب کاربری</span>
+                    <span>←</span>
+                </div>
+            </div>
+
+            <!-- درباره -->
+            <div class="settings-section">
+                <h3>ℹ️ درباره</h3>
+                <div class="setting-row">
+                    <span>📦 نسخه</span>
+                    <span>1.0.0</span>
+                </div>
+                <div class="setting-row">
+                    <span>© کپی‌رایت</span>
+                    <span>C2026-AHM</span>
+                </div>
+                <div class="setting-row" onclick="window.open('https://github.com/amirhossin1395/AHM_Local_Messenger')">
+                    <span>🌟 گیت‌هاب</span>
+                    <span>←</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHM Local Messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <!-- لوگو -->
+            <div class="auth-logo">
+                <div class="logo-icon">🚀</div>
+                <h1>AHM Local Messenger</h1>
+            
+            </div>
+
+            <!-- فرم ثبت‌نام -->
+            <div id="register-form" class="form-container">
+                <h2>ثبت‌نام</h2>
+                <div class="input-group">
+                    <span class="input-icon">👤</span>
+                    <input type="text" id="reg-username" placeholder="نام کاربری (انگلیسی)" required>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon">📛</span>
+                    <input type="text" id="reg-display" placeholder="نام نمایشی" required>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="reg-password" placeholder="رمز عبور" required>
+                </div>
+                <button class="btn-primary" onclick="register()">ثبت‌نام</button>
+                <p class="switch-link" onclick="showLogin()">حساب داری؟ <span>وارد شو</span></p>
+            </div>
+
+            <!-- فرم ورود -->
+            <div id="login-form" class="form-container hidden">
+                <h2>ورود</h2>
+                <div class="input-group">
+                    <span class="input-icon">👤</span>
+                    <input type="text" id="login-username" placeholder="نام کاربری" required>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="login-password" placeholder="رمز عبور" required>
+                </div>
+                <button class="btn-primary" onclick="login()">ورود</button>
+                <p class="switch-link" onclick="showRegister()">حساب نداری؟ <span>ثبت‌نام کن</span></p>
+            </div>
+
+            <!-- پیام -->
+            <div id="message" class="message"></div>
+
+            <!-- فوتر -->
+            <div class="auth-footer">
+                <p>© C2026-AMIRHOSSEINHAJIMORADKHANI (AHM)</p>
+                <p>Open Source Project</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

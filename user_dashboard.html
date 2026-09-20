@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد - AHM Local Messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-page">
+        <header class="dashboard-header">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <h1>📊 داشبورد من</h1>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- خوش‌آمد -->
+            <div class="welcome-card">
+                <div class="welcome-avatar" id="dashboard-avatar">👤</div>
+                <div class="welcome-text">
+                    <h2 id="dashboard-name">خوش اومدی!</h2>
+                    <p id="dashboard-username">@username</p>
+                </div>
+            </div>
+
+            <!-- آمار -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-value" id="dash-messages">0</div>
+                    <div class="stat-label">پیام‌ها</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value" id="dash-groups">0</div>
+                    <div class="stat-label">گروه‌ها</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📎</div>
+                    <div class="stat-value" id="dash-files">0</div>
+                    <div class="stat-label">فایل‌ها</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👤</div>
+                    <div class="stat-value" id="dash-friends">0</div>
+                    <div class="stat-label">دوستان</div>
+                </div>
+            </div>
+
+            <!-- فعالیت اخیر -->
+            <div class="activity-section">
+                <h3>📈 فعالیت اخیر</h3>
+                <div class="activity-list" id="activity-list">
+                    <!-- پر میشه -->
+                </div>
+            </div>
+
+            <!-- دسترسی سریع -->
+            <div class="quick-actions">
+                <h3>⚡ دسترسی سریع</h3>
+                <div class="actions-grid">
+                    <button class="action-btn" onclick="window.location.href='/chat'">
+                        💬 چت
+                    </button>
+                    <button class="action-btn" onclick="window.location.href='/profile'">
+                        👤 پروفایل
+                    </button>
+                    <button class="action-btn" onclick="window.location.href='/settings'">
+                        ⚙️ تنظیمات
+                    </button>
+                    <button class="action-btn" onclick="newGroup()">
+                        👥 گروه جدید
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

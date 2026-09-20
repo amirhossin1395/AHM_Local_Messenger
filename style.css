@@ -1,0 +1,2243 @@
+/* 🎨 AHM Local Messenger - Telegram Style */
+/* © C2026-AMIRHOSSEINHAJIMORADKHANI (AHM) */
+
+:root {
+    --tg-blue: #2AABEE;
+    --tg-blue-dark: #229ED9;
+    --tg-bg: #F5F5F5;
+    --tg-white: #FFFFFF;
+    --tg-sidebar: #FFFFFF;
+    --tg-chat-bg: #E7EBF0;
+    --tg-text: #000000;
+    --tg-text-secondary: #707579;
+    --tg-border: #E0E0E0;
+    --tg-message-own: #EEFFDE;
+    --tg-message-other: #FFFFFF;
+    --tg-hover: #F1F1F1;
+    --tg-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* حالت شب */
+[data-theme="dark"] {
+    --tg-bg: #0E1621;
+    --tg-white: #17212B;
+    --tg-sidebar: #17212B;
+    --tg-chat-bg: #0E1621;
+    --tg-text: #FFFFFF;
+    --tg-text-secondary: #7F91A4;
+    --tg-border: #101921;
+    --tg-message-own: #2B5278;
+    --tg-message-other: #182533;
+    --tg-hover: #202B36;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background: var(--tg-bg);
+    color: var(--tg-text);
+    height: 100vh;
+    overflow: hidden;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ==================== صفحه احراز هویت ==================== */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--tg-blue), var(--tg-blue-dark));
+}
+
+.auth-box {
+    background: var(--tg-white);
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-icon {
+    font-size: 60px;
+    margin-bottom: 10px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.auth-logo h1 {
+    color: var(--tg-blue);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--tg-text-secondary);
+    font-size: 14px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-container.hidden {
+    display: none;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: var(--tg-text);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    right: 15px;
+    font-size: 18px;
+    color: var(--tg-text-secondary);
+    pointer-events: none;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 45px 15px 15px;
+    border: 2px solid var(--tg-border);
+    border-radius: 12px;
+    background: var(--tg-bg);
+    color: var(--tg-text);
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.input-group input:focus {
+    border-color: var(--tg-blue);
+    background: var(--tg-white);
+    box-shadow: 0 0 0 3px rgba(42, 171, 238, 0.1);
+}
+
+.input-group input::placeholder {
+    color: var(--tg-text-secondary);
+}
+
+.btn-primary {
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--tg-blue), var(--tg-blue-dark));
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(42, 171, 238, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.switch-link {
+    text-align: center;
+    color: var(--tg-text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.switch-link span {
+    color: var(--tg-blue);
+    font-weight: 600;
+}
+
+.switch-link:hover span {
+    text-decoration: underline;
+}
+
+.message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.message.success {
+    background: rgba(76, 175, 80, 0.15);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.message.error {
+    background: rgba(244, 67, 54, 0.15);
+    color: #F44336;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--tg-border);
+    color: var(--tg-text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* ==================== اپلیکیشن چت ==================== */
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* سایدبار */
+.sidebar {
+    width: 380px;
+    background: var(--tg-sidebar);
+    border-left: 1px solid var(--tg-border);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+}
+
+.sidebar-header {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--tg-border);
+    background: var(--tg-sidebar);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    font-size: 36px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tg-blue);
+    border-radius: 50%;
+    color: white;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--tg-text);
+}
+
+.user-status {
+    font-size: 12px;
+    color: var(--tg-blue);
+}
+
+.sidebar-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--tg-text-secondary);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: var(--tg-hover);
+    color: var(--tg-blue);
+}
+
+/* جستجو */
+.search-box {
+    padding: 10px 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background: var(--tg-bg);
+    color: var(--tg-text);
+    font-size: 14px;
+    outline: none;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.search-box input::placeholder {
+    color: var(--tg-text-secondary);
+}
+
+/* تب‌ها */
+.tabs {
+    display: flex;
+    padding: 0 15px;
+    gap: 5px;
+    border-bottom: 1px solid var(--tg-border);
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: var(--tg-text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.tab.active {
+    color: var(--tg-blue);
+    border-bottom-color: var(--tg-blue);
+}
+
+.tab:hover {
+    color: var(--tg-blue);
+}
+
+/* لیست چت‌ها */
+.chat-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 5px 0;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-bottom: 1px solid var(--tg-border);
+}
+
+.chat-item:hover {
+    background: var(--tg-hover);
+}
+
+.chat-item.active {
+    background: rgba(42, 171, 238, 0.1);
+}
+
+.chat-item-avatar {
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tg-blue);
+    border-radius: 50%;
+    color: white;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.online-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background: #4CAF50;
+    border-radius: 50%;
+    border: 2px solid var(--tg-sidebar);
+}
+
+.chat-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-item-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--tg-text);
+    margin-bottom: 3px;
+}
+
+.chat-item-last {
+    font-size: 13px;
+    color: var(--tg-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-item-time {
+    font-size: 11px;
+    color: var(--tg-text-secondary);
+    flex-shrink: 0;
+}
+
+/* چت اصلی */
+.chat-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--tg-chat-bg);
+    position: relative;
+}
+
+.chat-header {
+    padding: 12px 20px;
+    background: var(--tg-sidebar);
+    border-bottom: 1px solid var(--tg-border);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.back-btn {
+    display: none;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    color: var(--tg-text);
+    cursor: pointer;
+}
+
+.chat-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.chat-avatar {
+    font-size: 32px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tg-blue);
+    border-radius: 50%;
+    color: white;
+}
+
+.chat-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--tg-text);
+}
+
+.chat-status {
+    font-size: 12px;
+    color: var(--tg-blue);
+}
+
+.chat-actions {
+    display: flex;
+    gap: 5px;
+}
+
+/* پیام‌ها */
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.welcome-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--tg-text-secondary);
+}
+
+.welcome-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.welcome-message h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--tg-text);
+}
+
+.message {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    position: relative;
+    animation: messageIn 0.3s ease;
+    word-wrap: break-word;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.own {
+    background: var(--tg-message-own);
+    align-self: flex-end;
+    border-bottom-left-radius: 4px;
+    color: #000;
+}
+
+.message.other {
+    background: var(--tg-message-other);
+    align-self: flex-start;
+    border-bottom-right-radius: 4px;
+    color: var(--tg-text);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message-sender {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--tg-blue);
+    margin-bottom: 4px;
+}
+
+.message-text {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.message-info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    margin-top: 4px;
+}
+
+.message-time {
+    font-size: 11px;
+    color: var(--tg-text-secondary);
+}
+
+.message-tick {
+    font-size: 12px;
+    color: var(--tg-blue);
+}
+
+.message-tick.read {
+    color: #4CAF50;
+}
+
+.message.pinned {
+    border: 2px solid var(--tg-blue);
+}
+
+.message-actions {
+    display: none;
+    position: absolute;
+    top: -30px;
+    background: var(--tg-white);
+    border-radius: 8px;
+    box-shadow: var(--tg-shadow);
+    padding: 4px;
+    gap: 4px;
+    z-index: 10;
+}
+
+.message:hover .message-actions {
+    display: flex;
+}
+
+.message-action-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.message-action-btn:hover {
+    background: var(--tg-hover);
+}
+
+/* ورودی پیام */
+.message-input-container {
+    padding: 12px 20px;
+    background: var(--tg-sidebar);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid var(--tg-border);
+}
+
+.message-input-container input {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    background: var(--tg-bg);
+    color: var(--tg-text);
+    font-size: 14px;
+    outline: none;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.message-input-container input::placeholder {
+    color: var(--tg-text-secondary);
+}
+
+.send-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: var(--tg-blue);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send-btn:hover {
+    background: var(--tg-blue-dark);
+    transform: scale(1.05);
+}
+
+/* پنل شکلک */
+.emoji-panel {
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+    background: var(--tg-white);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: var(--tg-shadow);
+    z-index: 100;
+}
+
+.emoji-panel.hidden {
+    display: none;
+}
+
+.emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+}
+
+.emoji-grid span {
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-align: center;
+}
+
+.emoji-grid span:hover {
+    transform: scale(1.3);
+}
+
+/* مودال */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--tg-white);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    overflow: hidden;
+    animation: slideUp 0.3s;
+}
+
+.modal-header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--tg-border);
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    color: var(--tg-text);
+}
+
+.modal-header button {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--tg-text-secondary);
+}
+
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.profile-avatar {
+    font-size: 80px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-body .input-group {
+    margin-bottom: 15px;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.modal-body .input-group label {
+    font-size: 13px;
+    color: var(--tg-text-secondary);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.modal-body .input-group input,
+.modal-body .input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--tg-border);
+    border-radius: 10px;
+    background: var(--tg-bg);
+    color: var(--tg-text);
+    font-size: 14px;
+    outline: none;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.modal-body .input-group input:focus,
+.modal-body .input-group textarea:focus {
+    border-color: var(--tg-blue);
+}
+
+/* اعلان */
+.notif-item {
+    padding: 15px;
+    background: var(--tg-bg);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.notif-item:hover {
+    background: var(--tg-hover);
+}
+
+.notif-item.unread {
+    border-right: 3px solid var(--tg-blue);
+}
+
+.notif-title {
+    font-weight: 600;
+    color: var(--tg-blue);
+    margin-bottom: 5px;
+}
+
+.notif-body {
+    font-size: 14px;
+    color: var(--tg-text);
+}
+
+.notif-time {
+    font-size: 11px;
+    color: var(--tg-text-secondary);
+    margin-top: 5px;
+}
+
+/* فوتر */
+.app-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+    background: var(--tg-sidebar);
+    color: var(--tg-text-secondary);
+    font-size: 11px;
+    border-top: 1px solid var(--tg-border);
+    z-index: 100;
+}
+
+/* اسکرول‌بار */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--tg-blue);
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        z-index: 500;
+        width: 100%;
+        max-width: 350px;
+        transform: translateX(100%);
+        transition: transform 0.3s;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .back-btn {
+        display: block;
+    }
+
+    .chat-main {
+        width: 100%;
+    }
+
+    .message {
+        max-width: 85%;
+    }
+}
+/* اضافه شده: متغیرهای جدید */
+:root {
+    --tg-blue: #2AABEE;
+    --tg-font-size: 16px;
+}
+
+/* اضافه شده: رنگ‌های تم */
+.theme-green { --tg-blue: #4CAF50; }
+.theme-purple { --tg-blue: #9C27B0; }
+.theme-orange { --tg-blue: #FF5722; }
+.theme-pink { --tg-blue: #E91E63; }
+
+/* اضافه شده: انیمیشن تایپ */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 10px 15px;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: var(--tg-text-secondary);
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+}
+
+/* اضافه شده: توست */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--tg-white);
+    color: var(--tg-text);
+    padding: 12px 24px;
+    border-radius: 10px;
+    box-shadow: var(--tg-shadow);
+    transition: transform 0.3s;
+    z-index: 9999;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast-success { border-right: 4px solid #4CAF50; }
+.toast-error { border-right: 4px solid #F44336; }
+.toast-info { border-right: 4px solid var(--tg-blue); }
+
+/* اضافه شده: سوییچ */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 26px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--tg-blue);
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* اضافه شده: صفحه پروفایل */
+.profile-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profile-avatar-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar-large {
+    font-size: 100px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tg-blue);
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    color: white;
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+.avatar-grid span {
+    font-size: 40px;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background 0.2s;
+}
+
+.avatar-grid span:hover {
+    background: var(--tg-hover);
+}
+
+/* اضافه شده: تنظیمات */
+.settings-section {
+    background: var(--tg-white);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.settings-section h3 {
+    margin-bottom: 15px;
+    color: var(--tg-text);
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--tg-border);
+    cursor: pointer;
+}
+
+.setting-row:last-child {
+    border-bottom: none;
+}
+
+.setting-row.danger {
+    color: #F44336;
+}
+
+/* اضافه شده: داشبورد */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--tg-white);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--tg-shadow);
+}
+
+.stat-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--tg-blue);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--tg-text-secondary);
+}
+/* ==================== دکمه‌های تلگرام ==================== */
+
+.header-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--tg-text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.header-btn:hover {
+    background: var(--tg-hover);
+    color: var(--tg-blue);
+    transform: scale(1.05);
+}
+
+.header-btn:active {
+    transform: scale(0.95);
+}
+
+.input-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--tg-text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.input-btn:hover {
+    background: var(--tg-hover);
+    color: var(--tg-blue);
+}
+
+.send-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: var(--tg-blue);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(42, 171, 238, 0.4);
+}
+
+.send-btn:hover {
+    background: var(--tg-blue-dark);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(42, 171, 238, 0.6);
+}
+
+.send-btn:active {
+    transform: scale(0.95);
+}
+
+.sidebar-menu-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--tg-text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.sidebar-menu-btn:hover {
+    background: var(--tg-hover);
+    color: var(--tg-blue);
+}
+
+/* ==================== منوی پاپ‌آپ ==================== */
+
+.dropdown-menu, .sidebar-dropdown {
+    position: absolute;
+    background: var(--tg-white);
+    border-radius: 12px;
+    box-shadow: var(--tg-shadow);
+    padding: 8px 0;
+    min-width: 200px;
+    z-index: 1000;
+    animation: dropdownIn 0.2s ease;
+}
+
+.dropdown-menu {
+    top: 60px;
+    left: 20px;
+}
+
+.sidebar-dropdown {
+    top: 60px;
+    right: 20px;
+}
+
+.dropdown-menu.hidden, .sidebar-dropdown.hidden {
+    display: none;
+}
+
+@keyframes dropdownIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-item {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 14px;
+    color: var(--tg-text);
+}
+
+.menu-item:hover {
+    background: var(--tg-hover);
+}
+
+.menu-item.danger {
+    color: #F44336;
+}
+
+.menu-item.danger:hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.menu-item span:first-child {
+    font-size: 18px;
+}
+
+/* ==================== دکمه‌های حالت ==================== */
+
+.voice-btn {
+    background: var(--tg-blue);
+    color: white;
+}
+
+.voice-btn:hover {
+    background: var(--tg-blue-dark);
+}
+
+/* ==================== انیمیشن ریپل ==================== */
+
+.header-btn::after,
+.input-btn::after,
+.send-btn::after,
+.sidebar-menu-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(42, 171, 238, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.header-btn:active::after,
+.input-btn:active::after,
+.send-btn:active::after,
+.sidebar-menu-btn:active::after {
+    width: 100%;
+    height: 100%;
+}
+/* ==================== اسکرول سراسری ==================== */
+
+/* اسکرول برای همه */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow: hidden; /* صفحه اصلی اسکرول نمیشه */
+}
+
+/* ==================== اسکرول سایدبار ==================== */
+
+.sidebar {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--tg-blue);
+}
+
+/* ==================== اسکرول لیست چت ==================== */
+
+.chat-list {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+    min-height: 0; /* مهم برای flex */
+}
+
+.chat-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+    background: var(--tg-blue);
+}
+
+/* ==================== اسکرول پیام‌ها ==================== */
+
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+    scroll-behavior: smooth;
+    min-height: 0; /* مهم برای flex */
+    padding: 20px;
+}
+
+.messages-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 4px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover {
+    background: var(--tg-blue);
+}
+
+/* ==================== اسکرول پنل شکلک ==================== */
+
+.emoji-grid {
+    max-height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+}
+
+.emoji-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.emoji-grid::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+/* ==================== اسکرول مودال ==================== */
+
+.modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+/* ==================== اسکرول صفحه پروفایل ==================== */
+
+.profile-page {
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+}
+
+.profile-page::-webkit-scrollbar {
+    width: 6px;
+}
+
+.profile-page::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+.profile-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==================== اسکرول صفحه تنظیمات ==================== */
+
+.settings-page {
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+}
+
+.settings-page::-webkit-scrollbar {
+    width: 6px;
+}
+
+.settings-page::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+.settings-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==================== اسکرول صفحه داشبورد ==================== */
+
+.dashboard-page {
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+}
+
+.dashboard-page::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dashboard-page::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+.dashboard-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==================== اسکرول صفحه ورود ==================== */
+
+.auth-container {
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+}
+
+.auth-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.auth-container::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+/* ==================== اسکرول افقی (اگه لازم شد) ==================== */
+
+.horizontal-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    white-space: nowrap;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+/* ==================== اسکرول نامرئی (اختیاری) ==================== */
+
+.hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* ==================== موبایل ==================== */
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        z-index: 500;
+        width: 100%;
+        max-width: 350px;
+        transform: translateX(100%);
+        transition: transform 0.3s;
+        overflow-y: auto;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .messages-container {
+        padding: 10px;
+    }
+    
+    .emoji-grid {
+        max-height: 200px;
+    }
+    
+    .modal-body {
+        max-height: 70vh;
+    }
+}
+/* ==================== دکمه برو به آخر ==================== */
+
+.scroll-to-bottom {
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: var(--tg-blue);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(42, 171, 238, 0.4);
+    transition: all 0.3s;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-to-bottom:hover {
+    background: var(--tg-blue-dark);
+    transform: scale(1.1);
+}
+
+.scroll-to-bottom.hidden {
+    display: none;
+}
+
+/* ==================== هایلایت پیام ==================== */
+
+.message.highlight {
+    animation: highlight 2s ease;
+}
+
+@keyframes highlight {
+    0%, 100% { background: transparent; }
+    50% { background: rgba(42, 171, 238, 0.3); }
+}
+
+/* ==================== اسکرول بی‌نهایت ==================== */
+
+.infinite-scroll-loading {
+    text-align: center;
+    padding: 20px;
+    color: var(--tg-text-secondary);
+}
+
+.infinite-scroll-loading::after {
+    content: '⏳ در حال بارگذاری...';
+}
+/* اسکرول سراسری */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--tg-text-secondary) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--tg-text-secondary);
+    border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--tg-blue);
+}
+
+/* دکمه برو به آخر */
+.scroll-to-bottom {
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: var(--tg-blue);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(42, 171, 238, 0.4);
+    transition: all 0.3s;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-to-bottom:hover {
+    background: var(--tg-blue-dark);
+    transform: scale(1.1);
+}
+
+.scroll-to-bottom.hidden {
+    display: none;
+}
+/* ==================== ریسپانسیو کامل ==================== */
+
+/* ==================== موبایل کوچک (تا ۴۸۰px) ==================== */
+@media (max-width: 480px) {
+    /* سایدبار */
+    .sidebar {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        max-width: 100%;
+        z-index: 500;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    /* هدر سایدبار */
+    .sidebar-header {
+        padding: 10px;
+    }
+    
+    .search-box input {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    
+    /* تب‌ها */
+    .tab {
+        font-size: 12px;
+        padding: 8px 5px;
+    }
+    
+    .tab span:first-child {
+        font-size: 16px;
+    }
+    
+    /* لیست چت */
+    .chat-item {
+        padding: 10px 12px;
+    }
+    
+    .chat-item-avatar {
+        font-size: 28px;
+        width: 42px;
+        height: 42px;
+    }
+    
+    .chat-item-name {
+        font-size: 13px;
+    }
+    
+    .chat-item-last {
+        font-size: 12px;
+    }
+    
+    /* چت اصلی */
+    .chat-main {
+        width: 100%;
+    }
+    
+    /* هدر چت */
+    .chat-header {
+        padding: 8px 12px;
+    }
+    
+    .chat-avatar {
+        font-size: 28px;
+        width: 38px;
+        height: 38px;
+    }
+    
+    .chat-name {
+        font-size: 14px;
+    }
+    
+    .chat-status {
+        font-size: 11px;
+    }
+    
+    .header-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    /* پیام‌ها */
+    .messages-container {
+        padding: 10px;
+    }
+    
+    .message {
+        max-width: 90%;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .message-sender {
+        font-size: 11px;
+    }
+    
+    .message-time {
+        font-size: 10px;
+    }
+    
+    /* ورودی پیام */
+    .message-input-container {
+        padding: 8px 10px;
+        gap: 5px;
+    }
+    
+    .message-input-container input {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+    
+    .input-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .send-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* پنل شکلک */
+    .emoji-panel {
+        bottom: 70px;
+        right: 10px;
+        left: 10px;
+        padding: 10px;
+    }
+    
+    .emoji-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+        max-height: 200px;
+    }
+    
+    .emoji-grid span {
+        font-size: 20px;
+    }
+    
+    /* مودال */
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        border-radius: 12px;
+    }
+    
+    .modal-body {
+        max-height: 65vh;
+        padding: 15px;
+    }
+    
+    /* فوتر */
+    .app-footer {
+        font-size: 9px;
+        padding: 5px;
+    }
+    
+    /* دکمه برو به آخر */
+    .scroll-to-bottom {
+        bottom: 70px;
+        left: 15px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ==================== موبایل متوسط (۴۸۱px تا ۷۶۸px) ==================== */
+@media (min-width: 481px) and (max-width: 768px) {
+    /* سایدبار */
+    .sidebar {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        max-width: 380px;
+        z-index: 500;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-radius: 0;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    /* چت اصلی */
+    .chat-main {
+        width: 100%;
+    }
+    
+    /* هدر چت */
+    .chat-header {
+        padding: 10px 15px;
+    }
+    
+    /* پیام‌ها */
+    .message {
+        max-width: 85%;
+    }
+    
+    /* ورودی پیام */
+    .message-input-container {
+        padding: 10px 15px;
+    }
+    
+    /* پنل شکلک */
+    .emoji-grid {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    
+    /* مودال */
+    .modal-content {
+        width: 90%;
+        max-width: 450px;
+    }
+}
+
+/* ==================== تبلت (۷۶۹px تا ۱۰۲۴px) ==================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* سایدبار */
+    .sidebar {
+        width: 320px;
+    }
+    
+    /* چت اصلی */
+    .chat-main {
+        flex: 1;
+    }
+    
+    /* پیام‌ها */
+    .message {
+        max-width: 75%;
+    }
+    
+    /* پنل شکلک */
+    .emoji-grid {
+        grid-template-columns: repeat(8, 1fr);
+    }
+    
+    /* مودال */
+    .modal-content {
+        max-width: 500px;
+    }
+}
+
+/* ==================== لپ‌تاپ (۱۰۲۵px تا ۱۴۴۰px) ==================== */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    /* سایدبار */
+    .sidebar {
+        width: 380px;
+    }
+    
+    /* پیام‌ها */
+    .message {
+        max-width: 70%;
+    }
+    
+    /* پنل شکلک */
+    .emoji-grid {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+
+/* ==================== لپ‌تاپ بزرگ (۱۴۴۱px به بالا) ==================== */
+@media (min-width: 1441px) {
+    /* سایدبار */
+    .sidebar {
+        width: 420px;
+    }
+    
+    /* چت اصلی */
+    .chat-main {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    /* پیام‌ها */
+    .message {
+        max-width: 65%;
+    }
+    
+    /* پنل شکلک */
+    .emoji-grid {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+
+/* ==================== حالت افقی (Landscape) ==================== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .sidebar {
+        width: 300px;
+        max-width: 300px;
+    }
+    
+    .sidebar-header {
+        padding: 8px;
+    }
+    
+    .chat-item {
+        padding: 8px 10px;
+    }
+    
+    .chat-item-avatar {
+        font-size: 24px;
+        width: 36px;
+        height: 36px;
+    }
+    
+    .message-input-container {
+        padding: 5px 10px;
+    }
+    
+    .emoji-panel {
+        bottom: 60px;
+        max-height: 150px;
+    }
+    
+    .emoji-grid {
+        max-height: 100px;
+    }
+    
+    .modal-body {
+        max-height: 50vh;
+    }
+}
+
+/* ==================== صفحه‌های لمسی (Touch) ==================== */
+@media (hover: none) and (pointer: coarse) {
+    /* دکمه‌های بزرگتر برای لمس */
+    .header-btn,
+    .input-btn,
+    .sidebar-menu-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .send-btn {
+        min-width: 48px;
+        min-height: 48px;
+    }
+    
+    .chat-item {
+        min-height: 60px;
+    }
+    
+    .menu-item {
+        min-height: 48px;
+    }
+    
+    /* حذف hover */
+    .header-btn:hover,
+    .input-btn:hover,
+    .send-btn:hover,
+    .sidebar-menu-btn:hover {
+        transform: none;
+    }
+    
+    /* فعال‌سازی active */
+    .header-btn:active,
+    .input-btn:active,
+    .sidebar-menu-btn:active {
+        background: var(--tg-hover);
+        transform: scale(0.95);
+    }
+    
+    .send-btn:active {
+        transform: scale(0.9);
+    }
+}
+
+/* ==================== صفحه‌های ماوس (Mouse) ==================== */
+@media (hover: hover) and (pointer: fine) {
+    .header-btn:hover,
+    .input-btn:hover,
+    .sidebar-menu-btn:hover {
+        background: var(--tg-hover);
+        color: var(--tg-blue);
+        transform: scale(1.05);
+    }
+    
+    .send-btn:hover {
+        background: var(--tg-blue-dark);
+        transform: scale(1.1);
+    }
+    
+    .chat-item:hover {
+        background: var(--tg-hover);
+    }
+    
+    .menu-item:hover {
+        background: var(--tg-hover);
+    }
+}
+
+/* ==================== چاپ (Print) ==================== */
+@media print {
+    .sidebar,
+    .chat-header,
+    .message-input-container,
+    .app-footer,
+    .emoji-panel,
+    .scroll-to-bottom,
+    .modal {
+        display: none !important;
+    }
+    
+    .messages-container {
+        overflow: visible;
+        height: auto;
+    }
+    
+    .message {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* ==================== حالت تاریک سیستمی ==================== */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --tg-bg: #0E1621;
+        --tg-white: #17212B;
+        --tg-sidebar: #17212B;
+        --tg-chat-bg: #0E1621;
+        --tg-text: #FFFFFF;
+        --tg-text-secondary: #7F91A4;
+        --tg-border: #101921;
+        --tg-message-own: #2B5278;
+        --tg-message-other: #182533;
+        --tg-hover: #202B36;
+    }
+}
+
+/* ==================== کاهش انیمیشن ==================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+/* اضافه شده: مودال تماس */
+.call-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.call-btn {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.call-btn.mute { background: #FFC107; color: white; }
+.call-btn.end { background: #F44336; color: white; }
+.call-btn.camera { background: #2196F3; color: white; }
+
+.call-btn:hover {
+    transform: scale(1.1);
+}
+
+#call-video-container {
+    width: 100%;
+    height: 300px;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* اضافه شده: دکمه تبدیل ویس */
+.voice-transcribe {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--tg-blue);
+    color: white;
+    border-radius: 10px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.voice-transcribe:hover {
+    background: var(--tg-blue-dark);
+}
+
+/* اضافه شده: آمار دیتابیس */
+.db-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 15px;
+}
+
+.db-stat-item {
+    background: var(--tg-bg);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.db-stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--tg-blue);
+}
+
+.db-stat-label {
+    font-size: 11px;
+    color: var(--tg-text-secondary);
+}

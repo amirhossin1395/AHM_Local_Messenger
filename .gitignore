@@ -1,0 +1,53 @@
+# 🚫 AHM Local Messenger - Git Ignore
+# © C2026-AMIRHOSSEINHAJIMORADKHANI (AHM)
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads
+uploads/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp3
+*.mp4
+*.wav
+*.ogg
+*.pdf
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local

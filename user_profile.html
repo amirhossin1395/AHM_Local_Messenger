@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پروفایل - AHM Local Messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="profile-page">
+        <header class="profile-header">
+            <button class="back-btn" onclick="goBack()">←</button>
+            <h1>👤 پروفایل من</h1>
+            <button class="icon-btn" onclick="logout()">🚪</button>
+        </header>
+
+        <div class="profile-content">
+            <!-- آواتار -->
+            <div class="profile-avatar-section">
+                <div class="profile-avatar-large" id="avatar-display">👤</div>
+                <button class="change-avatar-btn" onclick="showAvatarPicker()">تغییر آواتار</button>
+            </div>
+
+            <!-- اطلاعات -->
+            <div class="profile-info">
+                <div class="info-item">
+                    <label>📛 نام نمایشی</label>
+                    <input type="text" id="profile-display" placeholder="نام نمایشی">
+                </div>
+
+                <div class="info-item">
+                    <label>👤 نام کاربری</label>
+                    <input type="text" id="profile-username" disabled>
+                </div>
+
+                <div class="info-item">
+                    <label>📝 بیوگرافی</label>
+                    <textarea id="profile-bio" rows="3" placeholder="درباره خودت بنویس..."></textarea>
+                </div>
+
+                <button class="btn-primary" onclick="saveProfile()">💾 ذخیره تغییرات</button>
+            </div>
+
+            <!-- آمار -->
+            <div class="profile-stats">
+                <h3>📊 آمار من</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-messages">0</span>
+                        <span class="stat-label">پیام</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-groups">0</span>
+                        <span class="stat-label">گروه</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="stat-friends">0</span>
+                        <span class="stat-label">دوست</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تنظیمات -->
+            <div class="profile-settings">
+                <h3>⚙️ تنظیمات</h3>
+                <div class="setting-item">
+                    <span>🌙 حالت شب</span>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle" onchange="toggleTheme()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>🔔 اعلان صوتی</span>
+                    <label class="switch">
+                        <input type="checkbox" id="sound-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>🎨 رنگ تم</span>
+                    <div class="color-picker">
+                        <span class="color-option" style="background:#2AABEE" onclick="setThemeColor('#2AABEE')"></span>
+                        <span class="color-option" style="background:#4CAF50" onclick="setThemeColor('#4CAF50')"></span>
+                        <span class="color-option" style="background:#9C27B0" onclick="setThemeColor('#9C27B0')"></span>
+                        <span class="color-option" style="background:#FF5722" onclick="setThemeColor('#FF5722')"></span>
+                        <span class="color-option" style="background:#E91E63" onclick="setThemeColor('#E91E63')"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- خروج -->
+            <button class="btn-danger" onclick="logout()">🚪 خروج از حساب</button>
+        </div>
+
+        <!-- پنل انتخاب آواتار -->
+        <div class="modal hidden" id="avatar-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🎨 انتخاب آواتار</h3>
+                    <button onclick="closeAvatarPicker()">✖</button>
+                </div>
+                <div class="avatar-grid">
+                    <span onclick="selectAvatar('👤')">👤</span>
+                    <span onclick="selectAvatar('😎')">😎</span>
+                    <span onclick="selectAvatar('🚀')">🚀</span>
+                    <span onclick="selectAvatar('🌌')">🌌</span>
+                    <span onclick="selectAvatar('⭐')">⭐</span>
+                    <span onclick="selectAvatar('🔥')">🔥</span>
+                    <span onclick="selectAvatar('💪')">💪</span>
+                    <span onclick="selectAvatar('🎮')">🎮</span>
+                    <span onclick="selectAvatar('🎨')">🎨</span>
+                    <span onclick="selectAvatar('🎵')">🎵</span>
+                    <span onclick="selectAvatar('🦊')">🦊</span>
+                    <span onclick="selectAvatar('🐉')">🐉</span>
+                    <span onclick="selectAvatar('🦁')">🦁</span>
+                    <span onclick="selectAvatar('🐺')">🐺</span>
+                    <span onclick="selectAvatar('🦅')">🦅</span>
+                    <span onclick="selectAvatar('🐬')">🐬</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>

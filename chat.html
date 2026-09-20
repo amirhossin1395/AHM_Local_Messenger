@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2AABEE">
+    <title>AHM Local Messenger - Chat</title>
+    
+    <!-- فونت وزیرمتن -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- استایل -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Socket.IO -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    
+    <!-- آیکون -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body>
+    <div class="app-container" id="app">
+        
+        <!-- ==================== سایدبار ==================== -->
+        <aside class="sidebar" id="sidebar" style="overflow-y: auto; overflow-x: hidden;">
+            
+            <!-- هدر سایدبار -->
+            <div class="sidebar-header">
+                <button class="sidebar-menu-btn" onclick="toggleSidebarMenu(event)" title="منو">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                
+                <div class="search-box">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <input type="text" id="search-input" placeholder="جستجو..." oninput="searchMessages()">
+                </div>
+                
+                <button class="sidebar-menu-btn" onclick="showNewChat()" title="چت جدید">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- منوی سایدبار -->
+            <div class="sidebar-dropdown hidden" id="sidebar-dropdown">
+                <div class="menu-item" onclick="window.location.href='/profile'">
+                    <span>👤</span>
+                    <span>پروفایل من</span>
+                </div>
+                <div class="menu-item" onclick="window.location.href='/settings'">
+                    <span>⚙️</span>
+                    <span>تنظیمات</span>
+                </div>
+                <div class="menu-item" onclick="window.location.href='/dashboard'">
+                    <span>📊</span>
+                    <span>داشبورد</span>
+                </div>
+                <div class="menu-item" onclick="showNotifications()">
+                    <span>🔔</span>
+                    <span>اعلان‌ها</span>
+                </div>
+                <div class="menu-item" onclick="createGroup()">
+                    <span>👥</span>
+                    <span>گروه جدید</span>
+                </div>
+                <div class="menu-item" onclick="showSavedMessages()">
+                    <span>💾</span>
+                    <span>پیام‌های ذخیره شده</span>
+                </div>
+                <div class="menu-item" onclick="showContacts()">
+                    <span>📇</span>
+                    <span>مخاطبین</span>
+                </div>
+                <div class="menu-item danger" onclick="logout()">
+                    <span>🚪</span>
+                    <span>خروج</span>
+                </div>
+            </div>
+            
+            <!-- تب‌ها -->
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('chats')">
+                    <span>💬</span>
+                    <span>چت‌ها</span>
+                </button>
+                <button class="tab" onclick="showTab('groups')">
+                    <span>👥</span>
+                    <span>گروه‌ها</span>
+                </button>
+                <button class="tab" onclick="showTab('all')">
+                    <span>📢</span>
+                    <span>همگانی</span>
+                </button>
+            </div>
+            
+            <!-- لیست چت‌ها (با اسکرول) -->
+            <div class="chat-list" id="chat-list" style="flex: 1; overflow-y: auto; overflow-x: hidden; min-height: 0;">
+                <!-- پر میشه -->
+            </div>
+            
+            <!-- اطلاعات کاربر -->
+            <div class="user-info-footer">
+                <div class="user-info">
+                    <span class="user-avatar" id="user-avatar">👤</span>
+                    <div>
+                        <div class="user-name" id="user-display">کاربر</div>
+                        <div class="user-status" id="user-status">آنلاین</div>
+                    </div>
+                </div>
+                <button class="icon-btn" onclick="toggleTheme()" title="تغییر تم">🌙</button>
+            </div>
+        </aside>
+        
+        <!-- ==================== چت اصلی ==================== -->
+        <main class="chat-main" id="chat-main">
+            
+            <!-- هدر چت -->
+            <header class="chat-header" id="chat-header">
+                <button class="header-btn back-btn" onclick="goBack()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                
+                <div class="chat-user-info">
+                    <div class="chat-avatar" id="chat-avatar">👤</div>
+                    <div>
+                        <div class="chat-name" id="chat-name">یه چت رو انتخاب کن</div>
+                        <div class="chat-status" id="chat-status"></div>
+                    </div>
+                </div>
+                
+                <div class="chat-actions">
+                    <button class="header-btn" onclick="startVoiceCall()" title="تماس صوتی">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 16.92V19.92C22 20.52 21.52 21 20.92 21C10.4 21 2 12.6 2 2.08C2 1.48 2.48 1 3.08 1H6.08C6.68 1 7.16 1.48 7.16 2.08C7.16 3.68 7.4 5.2 7.84 6.64C8 7.12 7.84 7.64 7.48 8L5.76 9.72C6.96 12.24 9.76 15.04 12.28 16.24L14 14.52C14.36 14.16 14.88 14 15.36 14.16C16.8 14.6 18.32 14.84 19.92 14.84C20.52 14.84 21 15.32 21 15.92V18.92C21 19.52 20.52 20 19.92 20" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                    
+                    <button class="header-btn" onclick="startVideoCall()" title="تماس تصویری">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M23 7L16 12L23 17V7Z" stroke="currentColor" stroke-width="2"/>
+                            <rect x="1" y="5" width="15" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                    
+                    <button class="header-btn" onclick="toggleMenu(event)" title="منو">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="5" r="2" fill="currentColor"/>
+                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                            <circle cx="12" cy="19" r="2" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- منوی چت -->
+            <div class="dropdown-menu hidden" id="dropdown-menu">
+                <div class="menu-item" onclick="viewProfile()">
+                    <span>👤</span>
+                    <span>مشاهده پروفایل</span>
+                </div>
+                <div class="menu-item" onclick="searchInChat()">
+                    <span>🔍</span>
+                    <span>جستجو در چت</span>
+                </div>
+                <div class="menu-item" onclick="muteChat()">
+                    <span>🔕</span>
+                    <span>بی‌صدا کردن</span>
+                </div>
+                <div class="menu-item" onclick="clearHistory()">
+                    <span>🗑️</span>
+                    <span>پاک کردن تاریخچه</span>
+                </div>
+                <div class="menu-item" onclick="blockUser()">
+                    <span>🚫</span>
+                    <span>مسدود کردن</span>
+                </div>
+                <div class="menu-item danger" onclick="deleteChat()">
+                    <span>❌</span>
+                    <span>حذف چت</span>
+                </div>
+            </div>
+            
+            <!-- پیام‌ها (با اسکرول) -->
+            <div class="messages-container" id="messages" style="flex: 1; overflow-y: auto; overflow-x: hidden; min-height: 0; padding: 20px;">
+                <div class="welcome-message">
+                    <div class="welcome-icon">🚀</div>
+                    <h2>به AHM Local Messenger خوش اومدی!</h2>
+                    <p>یه چت رو از لیست انتخاب کن</p>
+                    <div class="welcome-footer">
+                        <span>© C2026-AMIRHOSSEINHAJIMORADKHANI (AHM)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- دکمه برو به آخر -->
+            <button class="scroll-to-bottom hidden" id="scroll-to-bottom" onclick="scrollToBottom()" title="برو به آخر">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M19 12L12 19L5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            
+            <!-- نشانگر تایپ -->
+            <div class="typing-indicator hidden" id="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+                <small>در حال تایپ...</small>
+            </div>
+            
+            <!-- ورودی پیام -->
+            <div class="message-input-container">
+                <button class="input-btn" onclick="toggleEmoji()" title="شکلک">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="8" cy="9" r="1.5" fill="currentColor"/>
+                        <circle cx="16" cy="9" r="1.5" fill="currentColor"/>
+                        <path d="M8 14C9 16 15 16 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                
+                <input type="text" id="message-input" placeholder="پیامت رو بنویس..." 
+                       onkeypress="if(event.key==='Enter' && !event.shiftKey) sendMessage()"
+                       oninput="onTyping()">
+                
+                <button class="input-btn" onclick="attachFile()" title="ضمیمه">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M21.44 11.05L12.25 20.24C11.12 21.37 9.29 21.37 8.16 20.24C7.03 19.11 7.03 17.28 8.16 16.15L17.35 6.96C18.03 6.28 19.12 6.28 19.8 6.96C20.48 7.64 20.48 8.73 19.8 9.41L11.41 17.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                
+                <button class="input-btn voice-btn hidden" onclick="recordVoice()" title="ویس">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+                        <path d="M5 10C5 13.87 8.13 17 12 17C15.87 17 19 13.87 19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="12" y1="17" x2="12" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="8" y1="22" x2="16" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                
+                <button class="send-btn hidden" onclick="sendMessage()" title="ارسال">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- پنل شکلک (با اسکرول) -->
+            <div class="emoji-panel hidden" id="emoji-panel">
+                <div class="emoji-categories">
+                    <button class="emoji-cat active" onclick="showEmojiCat('smileys')">😊</button>
+                    <button class="emoji-cat" onclick="showEmojiCat('animals')">🐶</button>
+                    <button class="emoji-cat" onclick="showEmojiCat('food')">🍕</button>
+                    <button class="emoji-cat" onclick="showEmojiCat('activities')">⚽</button>
+                    <button class="emoji-cat" onclick="showEmojiCat('objects')">💡</button>
+                    <button class="emoji-cat" onclick="showEmojiCat('symbols')">❤️</button>
+                </div>
+                <div class="emoji-grid" id="emoji-grid" style="max-height: 250px; overflow-y: auto;">
+                    <!-- پر میشه -->
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- ==================== مودال پروفایل ==================== -->
+    <div class="modal hidden" id="profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>👤 پروفایل</h3>
+                <button onclick="closeModal('profile-modal')">✖</button>
+            </div>
+            <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+                <div class="profile-avatar" id="profile-avatar">👤</div>
+                <div class="input-group">
+                    <label>نام نمایشی</label>
+                    <input type="text" id="profile-display">
+                </div>
+                <div class="input-group">
+                    <label>بیوگرافی</label>
+                    <textarea id="profile-bio" rows="3"></textarea>
+                </div>
+                <button class="btn-primary" onclick="saveProfile()">💾 ذخیره</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ==================== مودال اعلان‌ها ==================== -->
+    <div class="modal hidden" id="notif-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔔 اعلان‌ها</h3>
+                <button onclick="closeModal('notif-modal')">✖</button>
+            </div>
+            <div class="modal-body" id="notif-list" style="max-height: 60vh; overflow-y: auto;"></div>
+        </div>
+    </div>
+    
+    <!-- ==================== مودال گروه ==================== -->
+    <div class="modal hidden" id="group-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>👥 ساخت گروه</h3>
+                <button onclick="closeModal('group-modal')">✖</button>
+            </div>
+            <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+                <div class="input-group">
+                    <label>اسم گروه</label>
+                    <input type="text" id="group-name" placeholder="اسم گروه...">
+                </div>
+                <div class="input-group">
+                    <label>اعضا</label>
+                    <div id="group-members-list"></div>
+                </div>
+                <button class="btn-primary" onclick="saveGroup()">✅ ساخت گروه</button>
+            </div>
+        </div>
+    </div>
+    <!-- اضافه شده: مودال تماس -->
+<div class="modal hidden" id="call-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="call-title">📞 تماس</h3>
+            <button onclick="endCall()">✖</button>
+        </div>
+        <div class="modal-body">
+            <div id="call-video-container"></div>
+            <div class="call-controls">
+                <button class="call-btn mute" onclick="toggleMute()">🔇</button>
+                <button class="call-btn end" onclick="endCall()">📞</button>
+                <button class="call-btn camera" onclick="toggleCamera()">📹</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- اضافه شده: دکمه تبدیل ویس -->
+<div class="voice-transcribe" onclick="transcribeVoice(this.dataset.id)">
+    📝 متن
+</div>
+    <!-- ==================== فوتر ==================== -->
+    <footer class="app-footer">
+        <span>© C2026-AMIRHOSSEINHAJIMORADKHANI (AHM)</span>
+        <span>|</span>
+        <span>AHM Local Messenger v1.0.0</span>
+        <span>|</span>
+        <span>Open Source</span>
+    </footer>
+    
+    <!-- ==================== اسکریپت ==================== -->
+    <script src="script.js"></script>
+</body>
+</html>
