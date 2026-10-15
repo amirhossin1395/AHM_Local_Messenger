@@ -147,9 +147,11 @@ MIT License — استفاده تجاری، تغییر، توزیع و خصوص�
 ___
 📧 ایمیل | Email: amirhosseinhajimoradkhani@gmail.com
 
-🔗 گیت‌هاب | GitHub: @amirhossin1395
+🔗 گیت‌هاب|github
+https://github.com/amirhossin1395
 
-📢  ایتا |eitaa.com/Thedigitalworld
+📢  ایتا |eitaa
+https://eitaa.com/Thedigitalworld
 
 🌟 حمایت | Support
 
