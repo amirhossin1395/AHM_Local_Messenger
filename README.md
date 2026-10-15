@@ -87,7 +87,7 @@ python run.py
 text
 http://localhost:8000
 
-```
+___
 📁 ساختار پروژه | Project Structure
 
 text
@@ -114,7 +114,7 @@ AHM_Local_Messenger/
 🖥️ server.py           # سرور اصلی
 📋 requirements.txt    # کتابخانه‌ها
 
-```
+___
 🎮 چطوری استفاده کنم؟ | How to Use?
 
 فارسی:
@@ -130,19 +130,19 @@ English:
 🌐 Enter the server address in browser
 💬 Start chatting!
 
-```
+___
 🤝 مشارکت | Contributing
 
 فارسی: Fork کن، Branch بساز، تغییرات بده، Pull Request بفرست.
 
 English: Fork the repo, create a branch, make changes, send a Pull Request.
 
-```
+___
 📜 لایسنس | License
 
 MIT License — استفاده تجاری، تغییر، توزیع و خصوصی آزاده.
 
-``` 
+___
 📧 ایمیل | Email: amirhosseinhajimoradkhani@gmail.com
 
 🔗 گیت‌هاب | GitHub: @amirhossin1395
