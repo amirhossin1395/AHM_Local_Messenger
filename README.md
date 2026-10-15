@@ -68,14 +68,20 @@
 ```bash
 git clone https://github.com/amirhossin1395/AHM_Local_Messenger.git
 cd AHM_Local_Messenger
+
+```
 ۲. نصب کتابخانه‌ها | Install Requirements:
 
 ```bash
 pip install -r requirements.txt
+
+```
 ۳. اجرای سرور | Run Server:
 
 ```bash
 python run.py
+
+```
 ۴. باز کردن مرورگر | Open Browser:
 
 text
@@ -86,27 +92,29 @@ http://localhost:8000
 
 text
 AHM_Local_Messenger/
-├── 📄 api.py              # API اصلی
-├── 🔐 encryption.py       # رمزنگاری
-├── 🗄️ database.py        # مدیریت دیتابیس
-├── 💬 chat.html           # صفحه چت
-├── 👤 profile.js          # پروفایل کاربری
-├── ⚙️ settings.js         # تنظیمات
-├── 🎨 style.css           # استایل
-├── 📊 analytics.py        # تحلیل داده‌ها
-├── 🎙️ voice_transcriber.py # تبدیل ویس به متن
-├── 🔌 webrtc.py           # تماس صوتی/تصویری
-├── 🌐 websocket_server.py # سرور WebSocket
-├── 💾 backup.py           # پشتیبان‌گیری
-├── 🗜️ db_compressor.py   # فشرده‌سازی دیتابیس
-├── ⚡ db_optimizer.py     # بهینه‌سازی
-├── 🖼️ image_optimizer.py  # بهینه‌سازی تصاویر
-├── 📁 file_manager.py     # مدیریت فایل
-├── 🔍 search_engine.py    # موتور جستجو
-├── 🔔 notifications.py    # اعلان‌ها
-├── 🚀 run.py              # اجرای برنامه
-├── 🖥️ server.py           # سرور اصلی
-└── 📋 requirements.txt    # کتابخانه‌ها
+📄 api.py              # API اصلی
+🔐 encryption.py       # رمزنگاری
+🗄️ database.py        # مدیریت دیتابیس
+💬 chat.html           # صفحه چت
+👤 profile.js          # پروفایل کاربری
+⚙️ settings.js         # تنظیمات
+🎨 style.css           # استایل
+📊 analytics.py        # تحلیل داده‌ها
+🎙️ voice_transcriber.py # تبدیل ویس به متن
+🔌 webrtc.py           # تماس صوتی/تصویری
+🌐 websocket_server.py # سرور WebSocket
+💾 backup.py           # پشتیبان‌گیری
+🗜️ db_compressor.py   # فشرده‌سازی دیتابیس
+⚡ db_optimizer.py     # بهینه‌سازی
+🖼️ image_optimizer.py  # بهینه‌سازی تصاویر
+📁 file_manager.py     # مدیریت فایل
+🔍 search_engine.py    # موتور جستجو
+🔔 notifications.py    # اعلان‌ها
+🚀 run.py              # اجرای برنامه
+🖥️ server.py           # سرور اصلی
+📋 requirements.txt    # کتابخانه‌ها
+
+```
 🎮 چطوری استفاده کنم؟ | How to Use?
 
 فارسی:
@@ -121,33 +129,31 @@ English:
 📱 Connect others via phone/laptop to the same Wi-Fi
 🌐 Enter the server address in browser
 💬 Start chatting!
+
+```
 🤝 مشارکت | Contributing
 
 فارسی: Fork کن، Branch بساز، تغییرات بده، Pull Request بفرست.
 
 English: Fork the repo, create a branch, make changes, send a Pull Request.
 
+```
 📜 لایسنس | License
 
 MIT License — استفاده تجاری، تغییر، توزیع و خصوصی آزاده.
 
-👨‍💻 سازنده | Creator
-
-امیرحسین حاجی مرادخانی 🇮🇷 | AmirHossein Haji Moradkhani 🇮🇷
-
-🌟 نابغه ۹ ساله کرمانی 🌟
-
+``` 
 📧 ایمیل | Email: amirhosseinhajimoradkhani@gmail.com
 
 🔗 گیت‌هاب | GitHub: @amirhossin1395
 
 📢  ایتا |eitaa.com/Thedigitalworld
-
+``` 
 🌟 حمایت | Support
 
 اگه این پروژه بهت کمک کرد، ⭐ ستاره بده و 📢 به دوستات معرفی کن!
-
+ ``` 
 ساخته شده با ❤️ در کرمان، ایران 🇮🇷
 Made with ❤️ in Kerman, Iran 🇮🇷
-
+``` 
 © 2026 - AHM Local Messenger
