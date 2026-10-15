@@ -70,16 +70,18 @@ git clone https://github.com/amirhossin1395/AHM_Local_Messenger.git
 cd AHM_Local_Messenger
 ۲. نصب کتابخانه‌ها | Install Requirements:
 
-bash
+```bash
 pip install -r requirements.txt
 ۳. اجرای سرور | Run Server:
 
-bash
+```bash
 python run.py
 ۴. باز کردن مرورگر | Open Browser:
 
 text
 http://localhost:8000
+
+```
 📁 ساختار پروژه | Project Structure
 
 text
@@ -139,7 +141,7 @@ MIT License — استفاده تجاری، تغییر، توزیع و خصوص�
 
 🔗 گیت‌هاب | GitHub: @amirhossin1395
 
-📢  ایتا | Eitaa[: ](https://eitaa.com/Thedigitalworld)
+📢  ایتا |eitaa.com/Thedigitalworld
 
 🌟 حمایت | Support
 
