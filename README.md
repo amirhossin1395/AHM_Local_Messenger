@@ -84,10 +84,10 @@ python run.py
 ```
 ۴. باز کردن مرورگر | Open Browser:
 
-text
+```text
 http://localhost:8000
 
-___
+```
 📁 ساختار پروژه | Project Structure
 
 text
