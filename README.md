@@ -88,16 +88,18 @@ A **Local Messenger** that works on **Local Area Networks (LAN)** without needin
 ```bash
 git clone https://github.com/amirhossin1395/AHM_Local_Messenger.git
 cd AHM_Local_Messenger
-
+```bash
 ۲. نصب کتابخانه‌های مورد نیاز | 2. Install Requirements:
 pip install -r requirements.txt
-
+```bash
 ۳. اجرای سرور | 3. Run the Server:
 python run.py
-
+```bash
 ۴. باز کردن مرورگر | 4. Open Your Browser:
 http://localhost:8000
 
+
+‘’’
 ##
 📁 ساختار پروژه | Project Structure
 AHM_Local_Messenger/
