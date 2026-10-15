@@ -21,7 +21,7 @@ Created by: **AmirHossein Haji Moradkhani** 👦
 ## 🎯 AHM Local Messenger چیه؟ | What is AHM Local Messenger?
 
 **فارسی:**
-یه **پیام‌رسان محلی (Local Messenger)** که روی **شبکه داخلی** کار می‌کنه و نیازی به اینترنت نداره! یعنی می‌تونی با دوستات توی مدرسه، خونه یا هر جای دیگه که به **یه وای‌فای** وصلین، بدون اینترنت پیام بفرستی!
+یه **پیام‌رسان محلی (Local Messenger)** که روی **شبکه داخلی** کار می‌کنه و نیازی به اینترنت نداره! یعنی می‌تونی با دوستات توی خونه یا هر جای دیگه که به **یه وای‌فای** وصلین، بدون اینترنت پیام بفرستی!
 
 **English:**
 A **Local Messenger** that works on **Local Area Networks (LAN)** without needing internet! This means you can chat with your friends at school, home, or anywhere connected to the **same Wi-Fi** — no internet required!
